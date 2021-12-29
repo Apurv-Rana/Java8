@@ -234,9 +234,180 @@ to load properies from properties file into java properties object
 
 5. void store(outputStream os,String comment)
 for example see session 14 last part
+# Map
+Map is not a child interface of collection
+if we want to repreent a grop of obect as key value pairs then we should go for map.
+both keys and values are objects only.
+duplicate keys are not allowed but values can be duplicated .
+each key value pair is called entry ,hence map is considered as a collection of entry objects .
 
-                             
 
+## map interface methods :
+1.Object put(object key ,object pair)
+to add one key value pair to the map
+
+if the key is already present then old value will be replaced with new value and returns old value.
+
+
+2. Object put(Object key, Object value)	It is used to insert an entry in this map.
+3. void putAll(Map map)	It is used to insert the specified map in this map.
+4. Object remove(Object key)	It is used to delete an entry for the specified key.
+5. Object get(Object key)	It is used to return the value for the specified key.
+6. boolean containsKey(Object key)	It is used to search the specified key from this map.
+
+## collection values of map:
+- Set keySet()	
+It is used to return the Set view containing all the keys.
+Collection values()
+- Set entrySet()	
+It is used to return the Set view containing all the keys and values.
+
+## Entry interface:
+a map is a group of key value pairs and each key value pair is called an entry hence map is considered as a collection of entry objects.
+without exisiting map object there is no chance of exisiting entry object hence entry interface is defined inside map interface 
+```
+interface Map
+{
+Interface Entry
+{
+Object getKey()	It is used to obtain key.
+Object getValue()	It is used to obtain value.
+ setValue(object o)
+
+}
+}
+
+```
+
+# Hash Map:
+1.	intternal datastrucutre is hash table 
+2.	insertion order is not preserved and it is based on hash code of keys .
+3.	duplicate keys are not allowed but values can be duplicated 
+4.	hetrogenous objects are allowed for both key and value 
+5.	null is allowed for key (only once)
+6.	null is allowed for values(any number of times)
+7.	hash map implements serializable and clonabble interfaces but not random access .
+8.	hash map is the best choice if our frequent operation is searching.
+```
+HashMap h=new HashMap()
+defualt capciy 16
+default fill ratio 0.75
+HashMap h=new HashMap(int initialCapacity)
+HashMap h=new HashMap(int initialCapacity,float fillRatio)
+HashMap h=new HashMap(Map m)
+
+```
+
+
+
+
+### diffrences between hash map and hash table 
+- hashmap:nonsynchronized,its not threadsafe ,low perfromance .null alowwed for key and value ,non legacy.
+- hashtabel:synchronized,thread safe ,high performance ,null is not applicable immediately we will get null pointer exception,legacy
+
+### how to get Synchronized version of hash map object ?
+- hashmap h =new hashmap();
+- Map m1=Collections.synchronizedmap(m);
+
+
+
+## linked hashmap:
+linkend hashmap is the child class of hash map 
+it is excatly same as hashmap(including methods and constructors) except the following diffrences 
+the underlynig datastructure for hash mao is hash table while for linked hashmap is a combination of linked list and hash table(hybrid)
+insertion order is not preserved and it is based on hashcode  of keys .
+insertion order is preserved 
+
+introduced in 1.2 version (hash map)
+introduced in 1.4 version(linked hash map)
+
+
+linked hash set and linked hash map are commonly used for developing cache based applications .
+
+
+## IdentitiyHashMap:
+
+diffrence between == operator and .equals()
+in general == operator meant for refrence comparision (Address comparision) whreas .equals() method meant for content comparision .
+
+it is excatly same as hash map including methods and constructors except the following diffrence 
+in the case of normal hash map jvm will use .equals method to identify duplicate keys which is meant for content comparison .
+but in the case of identity hash map jvm will use == equal operator to identify duplicate keys which is meant for refrence comparision(address comparision)
+
+
+## weak hash map
+```
+
+import java.util.HashMap;
+import java.util.Map.*;
+class temp
+{
+    public String toString()
+    {
+     return "temp";
+     
+    }
+    
+    public void finalize()
+    {
+        System.out.println("hey finalize method called");
+    }
+
+public static void main(String[] args)
+{
+    HashMap m=new HashMap();
+    temp t=new temp();
+    m.put(t,"apurv");
+    
+    System.out.println(m);
+    t=null;
+    System.gc();
+}
+
+
+}
+run:
+{temp=apurv}
+BUILD SUCCESSFUL (total time: 3 seconds)
+
+
+
+but when we use weakhash map
+
+
+import java.util.HashMap;
+import java.util.Map.*;
+class temp
+{
+    public String toString()
+    {
+     return "temp";
+     
+    }
+    
+    public void finalize()
+    {
+        System.out.println("hey finalize method called");
+    }
+
+public static void main(String[] args)
+{
+    WeakHashMap m=new WeakHashMap();
+    temp t=new temp();
+    m.put(t,"apurv");
+    
+    System.out.println(m);
+    t=null;
+    System.gc();
+}
+
+
+}
+run:
+{temp=apurv}
+hey finalize method called
+
+```
 
 
 
