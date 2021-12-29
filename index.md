@@ -185,6 +185,58 @@ REVERSEORDER()
 
 
 
+# Hash table
+
+- implemented using hashtable datastructur
+- duplicates key are not allowed
+- null not for key as well as value
+- hetrogeenous allowed
+- every method present in hashtable is synchronized .
+
+## constructors:
+
+1. hashtable h=new hashTable();
+depault capcity :11
+default fill ratio:0.75
+
+2. hashtbale h=new hashtable(int inital capacity)
+
+3. hashtable h=new hashtable(int initialCapacity , float fillratio)
+4. hashtable h=new Hashtable(Map m)
+
+## properties:
+in our programme if anyting which changes freqently like username password mail id mobile no etc are not recommnded to hard code in java programme because if there is any change to reflect that change recompilation ,rebuild and redeploy application are required even sometimes server restart also required which creates a big buisness impact to the client 
+
+we can overcome this problem by using properties file,such type of variable things we have to configure int the properties file .
+from that propertoes file we have to read into java programme and we can use those properties .
+
+the main advantag eof this approach is if there is a change in properties file to reflect that change ,just redeployment is enough which wont create any business impact to the client .
+
+we can use java properties object to hold properties which are comming from properties file.
+
+in normal map (like hashmap hashtable treemap)key and value can be any type but in the case of properties key and value should be String type . 
+
+### constructor:
+```
+properties p=new Properties();
+```
+
+### methods:
+
+1. String getProperties(String name)
+2. String setProperty(String pname,String pvalue);
+   returns old value 
+
+3. Enumeration PropertyNames();
+
+4. void load(InputStream is )
+to load properies from properties file into java properties object
+
+5. void store(outputStream os,String comment)
+for example see session 14 last part
+
+                             
+
 
 
 
