@@ -288,6 +288,7 @@ Object getValue()	It is used to obtain value.
 6.	null is allowed for values(any number of times)
 7.	hash map implements serializable and clonabble interfaces but not random access .
 8.	hash map is the best choice if our frequent operation is searching.
+
 ```
 HashMap h=new HashMap()
 defualt capciy 16
@@ -336,6 +337,7 @@ but in the case of identity hash map jvm will use == equal operator to identify 
 
 
 ## weak hash map
+
 ```
 
 import java.util.HashMap;
